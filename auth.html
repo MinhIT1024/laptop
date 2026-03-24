@@ -114,7 +114,7 @@
             const password = document.getElementById('auth-password').value;
 
             if (isLogin) {
-                if (email === 'theminh@minhlaptop.vn' && password === 'minh123') {
+                if (email === 'theminh@minhlaptop.vn' && password === 'minhlaptop123') {
                     const admin = { id: 'admin', email, name: 'Quản trị viên', role: 'admin' };
                     localStorage.setItem('user', JSON.stringify(admin));
                     window.location.href = 'admin.html';
