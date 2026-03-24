@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Sản phẩm - Minh Laptop </title>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <script src="style.js"></script>
+    <style>
+      
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            scroll-behavior: smooth;
+        }
+
+        .line-clamp-1 {
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-900">
+    <div class="container mx-auto px-4 py-8">
+        <div class="flex flex-col md:flex-row gap-8">
+           
+            <aside class="w-full md:w-64 space-y-8">
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Danh mục</h3>
+                    <div id="category-filters" class="space-y-2">
+                        <button onclick="filterByCategory('All')" class="w-full text-left px-4 py-2 rounded-lg text-sm bg-blue-600 text-white font-bold">Tất cả</button>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Main  -->
+            <main class="flex-1 space-y-6">
+                <div class="flex flex-col sm:flex-row gap-4 items-center justify-between">
+                    <div class="relative w-full sm:w-96">
+                        <input type="text" id="search-input" oninput="handleSearch()" placeholder="Tìm kiếm laptop..." class="w-full pl-12 pr-4 py-3 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                    </div>
+                </div>
+                <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- add -->
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        let currentCategory = 'All';
+        let searchQuery = '';
+
+        function renderProducts() {
+            const grid = document.getElementById('products-grid');
+            grid.innerHTML = '';
+            const allProducts = JSON.parse(localStorage.getItem('db_products'));
+            
+            const filtered = allProducts.filter(p => {
+                const matchesCat = currentCategory === 'All' || p.category === currentCategory;
+                const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase());
+                return matchesCat && matchesSearch;
+            });
+
+            filtered.forEach(product => {
+                const card = `
+                    <div class="group relative bg-white border rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300">
+                        <a href="product-detail.html?id=${product.id}" class="block aspect-[4/3] overflow-hidden">
+                            <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        </a>
+                        <div class="p-5">
+                            <div class="mb-2">
+                                <span class="text-[10px] font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2 py-1 rounded">${product.category}</span>
+                            </div>
+                            <a href="product-detail.html?id=${product.id}" class="block mb-2">
+                                <h3 class="font-bold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-1">${product.name}</h3>
+                            </a>
+                            <div class="flex items-center justify-between mt-4">
+                                <span class="text-lg font-bold text-blue-600">${formatCurrency(product.price)}</span>
+                                <button onclick="addToCart('${product.id}')" class="p-2 bg-gray-900 text-white rounded-lg hover:bg-blue-600 transition-colors">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                grid.insertAdjacentHTML('beforeend', card);
+            });
+        }
+
+        function filterByCategory(cat) {
+            currentCategory = cat;
+            const buttons = document.querySelectorAll('#category-filters button');
+            buttons.forEach(btn => {
+                if (btn.textContent === (cat === 'All' ? 'Tất cả' : cat)) {
+                    btn.className = 'w-full text-left px-4 py-2 rounded-lg text-sm bg-blue-600 text-white font-bold';
+                } else {
+                    btn.className = 'w-full text-left px-4 py-2 rounded-lg text-sm hover:bg-gray-100 text-gray-600';
+                }
+            });
+            renderProducts();
+        }
+
+        function handleSearch() {
+            searchQuery = document.getElementById('search-input').value;
+            renderProducts();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const allProducts = JSON.parse(localStorage.getItem('db_products'));
+            const categories = ['All', ...new Set(allProducts.map(p => p.category))];
+            const filterContainer = document.getElementById('category-filters');
+            filterContainer.innerHTML = '';
+            
+            categories.forEach(cat => {
+                const btn = document.createElement('button');
+                btn.textContent = cat === 'All' ? 'Tất cả' : cat;
+                btn.className = cat === 'All' 
+                    ? 'w-full text-left px-4 py-2 rounded-lg text-sm bg-blue-600 text-white font-bold'
+                    : 'w-full text-left px-4 py-2 rounded-lg text-sm hover:bg-gray-100 text-gray-600';
+                btn.onclick = () => filterByCategory(cat);
+                filterContainer.appendChild(btn);
+            });
+
+            renderProducts();
+        });
+    </script>
+</body>
+</html>

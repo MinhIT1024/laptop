@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Chi tiết sản phẩm - Minh Laptop </title>
+    <script src="style.js"></script>
+    <style>
+     
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            scroll-behavior: smooth;
+        }
+
+        .line-clamp-1 {
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-900">
+    <div id="product-detail-container" class="container mx-auto px-4 py-8 space-y-12">
+        <!-- Content -->
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const productId = params.get('id');
+            const allProducts = JSON.parse(localStorage.getItem('db_products'));
+            const product = allProducts.find(p => p.id === productId);
+
+            if (!product) {
+                document.getElementById('product-detail-container').innerHTML = `
+                    <div class="text-center py-20">
+                        <h2 class="text-3xl font-bold mb-4">Sản phẩm không tồn tại</h2>
+                        <a href="products.html" class="px-6 py-2 bg-blue-600 text-white rounded-lg">Quay lại danh sách</a>
+                    </div>
+                `;
+                return;
+            }
+
+            const detailHTML = `
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    <div class="bg-white border rounded-3xl overflow-hidden aspect-square">
+                        <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover">
+                    </div>
+                    <div class="space-y-8">
+                        <div class="space-y-4">
+                            <span class="inline-block px-3 py-1 rounded-full bg-blue-100 text-blue-600 text-xs font-bold uppercase tracking-wider">${product.category}</span>
+                            <h1 class="text-4xl font-extrabold tracking-tight text-gray-900">${product.name}</h1>
+                            <p class="text-3xl font-bold text-blue-600">${formatCurrency(product.price)}</p>
+                        </div>
+                        <div class="grid grid-cols-3 gap-4">
+                            <div class="p-4 bg-gray-50 rounded-2xl border text-center space-y-2">
+                                <p class="text-[10px] text-gray-500 uppercase font-bold">CPU</p>
+                                <p class="text-sm font-bold">${product.cpu}</p>
+                            </div>
+                            <div class="p-4 bg-gray-50 rounded-2xl border text-center space-y-2">
+                                <p class="text-[10px] text-gray-500 uppercase font-bold">RAM</p>
+                                <p class="text-sm font-bold">${product.ram}</p>
+                            </div>
+                            <div class="p-4 bg-gray-50 rounded-2xl border text-center space-y-2">
+                                <p class="text-[10px] text-gray-500 uppercase font-bold">SSD</p>
+                                <p class="text-sm font-bold">${product.ssd}</p>
+                            </div>
+                        </div>
+                        <div class="space-y-4">
+                            <h3 class="font-bold text-lg">Mô tả sản phẩm</h3>
+                            <div class="text-gray-600 leading-relaxed whitespace-pre-line">${product.description}</div>
+                        </div>
+                        <div class="flex gap-4 pt-4">
+                            <button onclick="addToCart('${product.id}')" class="flex-1 py-4 bg-blue-600 text-white rounded-2xl font-bold hover:bg-blue-700 transition-all flex items-center justify-center gap-2 shadow-lg shadow-blue-200">
+                                Thêm vào giỏ hàng
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.getElementById('product-detail-container').innerHTML = detailHTML;
+        });
+    </script>
+</body>
+</html>

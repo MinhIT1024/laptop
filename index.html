@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Trang chủ - Minh Laptop </title>
+    <script src="style.js"></script>
+    <style>
+       
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            scroll-behavior: smooth;
+        }
+
+        .line-clamp-1 {
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+       
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-900">
+
+    <section class="relative h-[600px] flex items-center overflow-hidden bg-gray-900 text-white">
+        <div class="absolute inset-0 z-0">
+            <img src="./images/macbookpro16m3max.jpg" alt="Hero" class="w-full h-full object-cover opacity-40">
+        </div>
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="max-w-2xl space-y-6">
+                <span class="inline-block px-4 py-1 rounded-full bg-blue-600 text-sm font-bold tracking-wider uppercase">Khuyến mãi mùa hè</span>
+                <h1 class="text-5xl md:text-7xl font-extrabold tracking-tighter leading-tight">Nâng tầm trải nghiệm <br><span class="text-blue-500">Laptop đỉnh cao</span></h1>
+                <p class="text-lg text-gray-300 max-w-lg">Khám phá bộ sưu tập laptop mới nhất từ các thương hiệu hàng đầu thế giới. Hiệu năng mạnh mẽ, thiết kế sang trọng.</p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="products.html" class="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-bold transition-all flex items-center gap-2">Mua ngay</a>
+                    <a href="contact.html" class="px-8 py-4 bg-white/10 hover:bg-white/20 text-white rounded-full font-bold backdrop-blur-md transition-all">Liên hệ tư vấn</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- chuc nang -->
+    <section class="container mx-auto px-4 py-16">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="p-8 bg-gray-50 rounded-3xl space-y-4 border hover:border-blue-500 transition-colors">
+                <div class="w-12 h-12 bg-blue-100 rounded-2xl flex items-center justify-center text-blue-600">
+                </div>
+                <h3 class="text-xl font-bold">Giao hàng siêu tốc</h3>
+                <p class="text-gray-600 text-sm">Giao hàng trong vòng 2h tại TP.HCM. Miễn phí vận chuyển toàn quốc.</p>
+            </div>
+            <div class="p-8 bg-gray-50 rounded-3xl space-y-4 border hover:border-blue-500 transition-colors">
+                <div class="w-12 h-12 bg-green-100 rounded-2xl flex items-center justify-center text-green-600">
+                </div>
+                <h3 class="text-xl font-bold">Bảo hành chính hãng</h3>
+                <p class="text-gray-600 text-sm">Cam kết 100% sản phẩm chính hãng. Bảo hành tận nơi lên đến 24 tháng.</p>
+            </div>
+            <div class="p-8 bg-gray-50 rounded-3xl space-y-4 border hover:border-blue-500 transition-colors">
+                <div class="w-12 h-12 bg-orange-100 rounded-2xl flex items-center justify-center text-orange-600">
+                </div>
+                <h3 class="text-xl font-bold">Hỗ trợ trả góp 0%</h3>
+                <p class="text-gray-600 text-sm">Thủ tục đơn giản, xét duyệt nhanh chóng qua thẻ tín dụng.</p>
+            </div>
+        </div>
+    </section>
+
+    <!--  san pham -->
+    <section class="container mx-auto px-4 py-16">
+        <div class="flex items-end justify-between mb-8">
+            <div>
+                <h2 class="text-3xl font-bold tracking-tight">Sản phẩm nổi bật</h2>
+                <p class="text-gray-500">Những mẫu laptop bán chạy nhất tháng này</p>
+            </div>
+            <a href="products.html" class="text-blue-600 font-bold hover:underline">Xem tất cả</a>
+        </div>
+        <div id="featured-products" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- add  -->
+        </div>
+    </section>
+
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const featuredContainer = document.getElementById('featured-products');
+            const featured = JSON.parse(localStorage.getItem('db_products')).slice(0, 4);
+
+            featured.forEach(product => {
+                const card = `
+                    <div class="group relative bg-white border rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300">
+                        <a href="product-detail.html?id=${product.id}" class="block aspect-[4/3] overflow-hidden">
+                            <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        </a>
+                        <div class="p-5">
+                            <div class="mb-2">
+                                <span class="text-[10px] font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2 py-1 rounded">${product.category}</span>
+                            </div>
+                            <a href="product-detail.html?id=${product.id}" class="block mb-2">
+                                <h3 class="font-bold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-1">${product.name}</h3>
+                            </a>
+                            <div class="flex items-center justify-between mt-4">
+                                <span class="text-lg font-bold text-blue-600">${formatCurrency(product.price)}</span>
+                                <button onclick="addToCart('${product.id}')" class="p-2 bg-gray-900 text-white rounded-lg hover:bg-blue-600 transition-colors">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                featuredContainer.insertAdjacentHTML('beforeend', card);
+            });
+        });
+    </script>
+</body>
+</html>

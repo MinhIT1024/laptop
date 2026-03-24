@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Đơn hàng - Minh Laptop </title>
+    <script src="style.js"></script>
+    <style>
+       
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            scroll-behavior: smooth;
+        }
+
+        .line-clamp-1 {
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-900">
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+        <h1 class="text-3xl font-bold mb-8">Lịch sử đơn hàng</h1>
+        <div id="orders-list" class="space-y-6">
+            <!-- dat hang -->
+        </div>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const user = getCurrentUser();
+            if (!user) {
+                window.location.href = 'auth.html';
+                return;
+            }
+
+            const orders = JSON.parse(localStorage.getItem('orders') || '[]').filter(o => o.userId === user.id);
+            const list = document.getElementById('orders-list');
+
+            if (orders.length === 0) {
+                list.innerHTML = '<p class="text-center py-20 text-gray-500">Bạn chưa có đơn hàng nào.</p>';
+                return;
+            }
+
+            orders.reverse().forEach(o => {
+                const orderHTML = `
+                    <div class="bg-white border rounded-3xl overflow-hidden shadow-sm">
+                        <div class="p-6 bg-gray-50 border-b flex justify-between items-center">
+                            <div>
+                                <p class="font-bold text-lg">Đơn hàng #${o.id}</p>
+                                <p class="text-xs text-gray-500">Ngày đặt: ${new Date(o.createdAt).toLocaleString('vi-VN')}</p>
+                            </div>
+                            <span class="px-3 py-1 bg-blue-50 text-blue-600 text-xs font-bold rounded-full uppercase">Đang xử lý</span>
+                        </div>
+                        <div class="p-6 space-y-4">
+                            ${o.items.map(item => `
+                                <div class="flex items-center gap-4">
+                                    <img src="${item.image}" class="w-16 h-16 rounded-xl object-cover border">
+                                    <div class="flex-1">
+                                        <p class="font-bold text-sm">${item.name}</p>
+                                        <p class="text-xs text-gray-500">Số lượng: ${item.quantity}</p>
+                                    </div>
+                                    <p class="font-bold text-sm">${formatCurrency(item.price * item.quantity)}</p>
+                                </div>
+                            `).join('')}
+                            <div class="pt-4 border-t text-right">
+                                <p class="text-sm text-gray-500">Tổng thanh toán:</p>
+                                <p class="text-2xl font-bold text-blue-600">${formatCurrency(o.total)}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                list.insertAdjacentHTML('beforeend', orderHTML);
+            });
+        });
+    </script>
+</body>
+</html>
