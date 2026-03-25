@@ -116,8 +116,11 @@ function renderFooter() {
                     </div>
                     <div>
                         <h4 class="text-white font-semibold mb-4">Liên hệ</h4>
-                        <p class="text-sm">1 Đường DT743, Phường Dĩ An, TP. HCM</p>
+                        <p class="text-sm">1 Đường Số 1, Phường Dĩ An, TP. HCM</p>
                         <p class="text-sm">Hotline: 1900 9999</p>
+                        <p class="text-sm">Email: contact@minhlaptop.vn</p>
+                        
+                        
                     </div>
                 </div>
                 <div class="mt-12 pt-8 border-t border-gray-800 text-center text-xs">
