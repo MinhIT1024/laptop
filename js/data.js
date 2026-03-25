@@ -4,7 +4,7 @@ const products = [
     id: '1',
     name: 'MacBook Air M2 2022',
     price: 24990000,
-    image: '.\images\macbook3.jpg',
+    image: 'images\macbook3.jpg',
     cpu: 'Apple M2 (8-core CPU, 8-core GPU)',
     ram: '8GB Unified Memory',
     ssd: '256GB SSD',
