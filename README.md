@@ -1,9 +1,14 @@
 # laptop
 Đồ Án Thiết Kế Web HTML CSS JAVASCRIPT 
+
 WEB : https://minhit1024.github.io/laptop
+
 Đề tài môn Thiết Kế Web - Lớp 24TTH02
+
 Giáo Viên : Cô Thùy Linh
+
 Học Viên : Hứa Thế Minh
+
 Trường Trung Cấp Công Nghiệp Bình Dương
 
 
