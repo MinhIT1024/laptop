@@ -1,5 +1,15 @@
 # laptop
 Đồ Án Thiết Kế Web HTML CSS JAVASCRIPT 
+WEB : https://minhit1024.github.io/laptop
+Đề tài môn Thiết Kế Web - Lớp 24TTH02
+Giáo Viên : Cô Thùy Linh
+Học Viên : Hứa Thế Minh
+Trường Trung Cấp Công Nghiệp Bình Dương
+
+
+![125510](https://github.com/user-attachments/assets/62e2ad14-c070-4c06-8515-2baf0341ee26)
+
+Trang Web bán Laptop ( Cửa Hàng Minh Laptop) cung cấp nhiều dòng laptop chuyên nghiệp và phù hợp với mọi nhu cầu sử dụng.
 1. Tóm tắt nội dung (Content Summary)
 
 Trang web "Minh Laptop" là một nền tảng thương mại điện tử chuyên về kinh doanh máy tính xách tay (Laptop) từ các thương hiệu hàng đầu thế giới (như MacBook, Dell, HP, v.v.). Giao diện được thiết kế hiện đại, tập trung vào việc giới thiệu các sản phẩm công nghệ cao cấp, cung cấp thông tin về các chương trình khuyến mãi và các dịch vụ hậu mãi đi kèm như giao hàng nhanh, bảo hành chính hãng và hỗ trợ trả góp.
@@ -51,5 +61,5 @@ C. Chức năng Tương tác & Bán hàng
 
 Trang web này đóng vai trò như một showroom trực tuyến chuyên nghiệp, giúp khách hàng dễ dàng tìm kiếm và lựa chọn thiết bị công nghệ phù hợp.
 
-WEB : https://minhit1024.github.io/laptop
+
 
