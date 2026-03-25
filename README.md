@@ -11,6 +11,7 @@ Học Viên : Hứa Thế Minh
 
 Trường Trung Cấp Công Nghiệp Bình Dương
 
+Nguồn link tải CSS:  <!-- <script src="https://cdn.tailwindcss.com"></script> -->
 
 ![125510](https://github.com/user-attachments/assets/62e2ad14-c070-4c06-8515-2baf0341ee26)
 
@@ -65,6 +66,8 @@ C. Chức năng Tương tác & Bán hàng
     Tính năng Responsive: Giao diện tương thích tốt trên cả máy tính, máy tính bảng và điện thoại di động, đảm bảo trải nghiệm mua sắm mượt mà trên mọi thiết bị.
 
 Trang web này đóng vai trò như một showroom trực tuyến chuyên nghiệp, giúp khách hàng dễ dàng tìm kiếm và lựa chọn thiết bị công nghệ phù hợp.
+
+
 
 
 
