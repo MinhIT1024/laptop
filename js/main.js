@@ -124,11 +124,7 @@ function renderFooter() {
                     </div>
                 </div>
                 <div class="mt-12 pt-8 border-t border-gray-800 text-center text-xs">
-                <p> Đề tài thi cuối môn Thiết Kế Web - Lớp 24TTH02 </p>
-                <p> Giáo Viên : Cô Thùy Linh </p>
-                <p> Học Viên : Hứa Thế Minh </p>
-                <p> Trường Trung Cấp Công Nghiệp Bình Dương </p>
-                <p>© 2026 Minh Laptop. Tất cả bản quyền đã được đăng ký.</p>
+               <p>©2026 Minh Laptop. Tất cả bản quyền đã được đăng ký.</p>
                 </div>
             </div>
 
