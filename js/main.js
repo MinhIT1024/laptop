@@ -128,6 +128,22 @@ function renderFooter() {
                 <p>© 2026 Minh Laptop. Tất cả bản quyền đã được đăng ký.</p>
                 </div>
             </div>
+
+            <div>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15671.207862198535!2d106.76127182900393!3d10.902649807227348!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3174d85634ad2ac1%3A0x2248ae1fe871b6a5!2zR2EgRMSpIEFu!5e0!3m2!1sen!2s!4v1767617102993!5m2!1sen!2s" 
+    width="320" height="150" style="border:0;" allowfullscreen="" loading="lazy" 
+    referrerpolicy="no-referrer-when-downgrade"></iframe>
+</div>
+<div>
+<p> Đề tài môn Thiết Kế Web - Lớp 24TTH02</p>
+<p> Giáo Viên : Cô Thùy Linh </p>
+<p> Học Viên : Hứa Thế Minh </p>
+<p> Trường Trung Cấp Công Nghiệp Bình Dương </p>
+<p> Số 79 DT 743,KCN Sóng Thần,p.Bình Hòa,TP.Hồ Chí Minh</p>
+<p> Hotline/Zalo: 0935.656.603 hoặc 0989.390.139 hoặc 0986.265.679</p>
+<p> Email: truongtccnbd@gmail.com</p>              
+<p> </p>Fanpage: https://www.facebook.com/bdi.edu.vn</p>
+</div>
         </footer>
     `;
     document.body.insertAdjacentHTML('beforeend', footerHTML);
